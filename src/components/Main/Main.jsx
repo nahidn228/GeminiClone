@@ -1,18 +1,43 @@
 import "./Main.css";
 
 import axios from "axios";
+import { useState } from "react";
 import { assets } from "../../assets/assets";
 
 const Main = () => {
+  const [input, setInput] = useState("");
+  const [onSent, setOnSent] = useState("");
+  const [recentPrompt, setRecentPrompt] = useState("");
+  const [previousPrompt, setPreviousPrompt] = useState([]);
+  const [showResult, setShowResult] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [resultData, setResultData] = useState("");
+
+  const contextValue = {
+    previousPrompt,
+    setPreviousPrompt,
+    onSent,
+    recentPrompt,
+    setRecentPrompt,
+    showResult,
+    loading,
+    resultData,
+    input, 
+    setInput,
+
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const comment = e.target.userComment.value;
+    setInput(comment);
     console.log(comment);
     try {
       const { data } = await axios.get(
         `http://localhost:5000/test-ai?prompt=${comment}`
       );
       console.log(data?.reply);
+      setOnSent(data?.reply);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +80,7 @@ const Main = () => {
           </div>
         </div>
         <div>
-          
+          <p>{userChat ? userChat : null}</p>
         </div>
 
         {/* Main bottom */}
