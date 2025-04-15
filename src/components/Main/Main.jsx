@@ -1,8 +1,23 @@
 import "./Main.css";
 
+import axios from "axios";
 import { assets } from "../../assets/assets";
 
 const Main = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const comment = e.target.userComment.value;
+    console.log(comment);
+    try {
+      const { data } = await axios.get(
+        `http://localhost:5000/test-ai?prompt=${comment}`
+      );
+      console.log(data?.reply);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="main">
       {/* NavBar */}
@@ -39,21 +54,31 @@ const Main = () => {
             <img src={assets?.code_icon} alt="" />
           </div>
         </div>
+        <div>
+          
+        </div>
 
         {/* Main bottom */}
 
         <div className="main-bottom">
           <div className="search-box">
-            <input type="text" placeholder="Enter a prompt here" />
+            <form onSubmit={handleSubmit}>
+              <input
+                name="userComment"
+                type="text"
+                placeholder="Enter a prompt here"
+              />
+            </form>
             <div>
-            <img src={assets?.gallery_icon} alt="" />
-            <img src={assets?.mic_icon} alt="" />
-            <img src={assets?.send_icon} alt="" />
+              <img src={assets?.gallery_icon} alt="" />
+              <img src={assets?.mic_icon} alt="" />
+              <img src={assets?.send_icon} alt="" />
             </div>
           </div>
 
           <p className="bottom-info">
-          Nime may display inaccurate info, including about people, so double-check its responses. Your privacy and Nime Apps
+            Nime may display inaccurate info, including about people, so
+            double-check its responses. Your privacy and Nime Apps
           </p>
         </div>
       </div>
