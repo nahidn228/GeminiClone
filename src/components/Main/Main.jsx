@@ -7,25 +7,6 @@ import { assets } from "../../assets/assets";
 const Main = () => {
   const [input, setInput] = useState("");
   const [onSent, setOnSent] = useState("");
-  const [recentPrompt, setRecentPrompt] = useState("");
-  const [previousPrompt, setPreviousPrompt] = useState([]);
-  const [showResult, setShowResult] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [resultData, setResultData] = useState("");
-
-  const contextValue = {
-    previousPrompt,
-    setPreviousPrompt,
-    onSent,
-    recentPrompt,
-    setRecentPrompt,
-    showResult,
-    loading,
-    resultData,
-    input, 
-    setInput,
-
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,6 +39,7 @@ const Main = () => {
             <span>Hello, Dev..</span>{" "}
           </p>
           <p>How can I help you today</p>
+          
         </div>
 
         {/* All cards */}
@@ -78,9 +60,6 @@ const Main = () => {
             <p>Improve the readability of the following code</p>
             <img src={assets?.code_icon} alt="" />
           </div>
-        </div>
-        <div>
-          <p>{userChat ? userChat : null}</p>
         </div>
 
         {/* Main bottom */}
