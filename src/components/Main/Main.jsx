@@ -1,9 +1,11 @@
 import "./Main.css";
 
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { assets } from "../../assets/assets";
 
 const Main = () => {
+  const [allData, setAllData] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const comment = e.target.userComment.value;
@@ -11,7 +13,7 @@ const Main = () => {
     console.log(comment);
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/test-ai?prompt=${comment}`
+        `${import.meta.env.VITE_URL}/test-ai?prompt=${comment}`
       );
       console.log(data);
       if (data?.insertedId) {
@@ -21,6 +23,20 @@ const Main = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    try {
+      axios
+        .get(`http://localhost:5000/response-ai`)
+        .then((data) => setAllData(data?.data));
+
+      console.log(allData);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  console.log(allData);
 
   return (
     <div className="main">
@@ -59,32 +75,37 @@ const Main = () => {
           </div>
         </div>
 
-        <div className="chat chat-start">
-          <div className="chat-image avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS chat bubble component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
-          </div>
-          <div className="chat-header">Name</div>
-          <div className="chat-bubble">You were the Chosen One!</div>
-        </div>
-        <div className="min-h-64">
-          <div className="chat chat-end">
-            <div className="chat-image avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS chat bubble component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+        <div className="min-h-80 overflow-scroll">
+          {allData.map((data) => (
+            <>
+              <div className="chat chat-start">
+                <div className="chat-image avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS chat bubble component"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    />
+                  </div>
+                </div>
+                <div className="chat-header font-bold text-sm">User</div>
+                {<div className="chat-bubble"> {data?.prompt} </div>}
               </div>
-            </div>
-            <div className="chat-header">Nime</div>
-            <div className="chat-bubble">I hate you!</div>
-            <div className="chat-footer opacity-50">Seen at 12:46</div>
-          </div>
+              <div className="">
+                <div className="chat chat-end">
+                  <div className="chat-image avatar">
+                    <div className="w-10 rounded-full">
+                      <img
+                        alt="Tailwind CSS chat bubble component"
+                        src="https://i.ibb.co.com/Jw5dfPy2/NImeBot.jpg"
+                      />
+                    </div>
+                  </div>
+                  <div className="chat-header font-bold text-sm">Nime</div>
+                  {<div className="chat-bubble"> {data?.reply} </div>}
+                </div>
+              </div>
+            </>
+          ))}
         </div>
 
         {/* Main bottom */}
