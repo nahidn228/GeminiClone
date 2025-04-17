@@ -1,24 +1,22 @@
 import "./Main.css";
 
 import axios from "axios";
-import { useState } from "react";
 import { assets } from "../../assets/assets";
 
 const Main = () => {
-  const [input, setInput] = useState("");
-  const [onSent, setOnSent] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const comment = e.target.userComment.value;
-    setInput(comment);
+
     console.log(comment);
     try {
-      const { data } = await axios.get(
+      const { data } = await axios.post(
         `http://localhost:5000/test-ai?prompt=${comment}`
       );
-      console.log(data?.reply);
-      setOnSent(data?.reply);
+      console.log(data);
+      if (data?.insertedId) {
+        e.target.reset();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +37,6 @@ const Main = () => {
             <span>Hello, Dev..</span>{" "}
           </p>
           <p>How can I help you today</p>
-          
         </div>
 
         {/* All cards */}
@@ -59,6 +56,34 @@ const Main = () => {
           <div className="card">
             <p>Improve the readability of the following code</p>
             <img src={assets?.code_icon} alt="" />
+          </div>
+        </div>
+
+        <div className="chat chat-start">
+          <div className="chat-image avatar">
+            <div className="w-10 rounded-full">
+              <img
+                alt="Tailwind CSS chat bubble component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              />
+            </div>
+          </div>
+          <div className="chat-header">Name</div>
+          <div className="chat-bubble">You were the Chosen One!</div>
+        </div>
+        <div className="min-h-64">
+          <div className="chat chat-end">
+            <div className="chat-image avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                />
+              </div>
+            </div>
+            <div className="chat-header">Nime</div>
+            <div className="chat-bubble">I hate you!</div>
+            <div className="chat-footer opacity-50">Seen at 12:46</div>
           </div>
         </div>
 
