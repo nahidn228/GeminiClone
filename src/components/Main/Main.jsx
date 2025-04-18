@@ -52,7 +52,7 @@ const Main = () => {
             {" "}
             <span>Hello, Dev..</span>{" "}
           </p>
-          <p>How can I help you today</p>
+          <p>How can I help you today..!</p>
         </div>
 
         {/* All cards */}
