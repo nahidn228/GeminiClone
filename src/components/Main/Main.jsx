@@ -114,6 +114,7 @@ const Main = () => {
           <div className="search-box">
             <form onSubmit={handleSubmit}>
               <input
+                className="w-full"
                 name="userComment"
                 type="text"
                 placeholder="Enter a prompt here"
