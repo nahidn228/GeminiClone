@@ -88,7 +88,7 @@ const Main = () => {
                   </div>
                 </div>
                 <div className="chat-header font-bold text-sm">User</div>
-                {<div className="chat-bubble"> {data?.prompt} </div>}
+                {<div className="chat-bubble bg-blue-300 "> {data?.prompt} </div>}
               </div>
               <div className="">
                 <div className="chat chat-end">
@@ -101,7 +101,7 @@ const Main = () => {
                     </div>
                   </div>
                   <div className="chat-header font-bold text-sm">Nime</div>
-                  {<div className="chat-bubble"> {data?.reply} </div>}
+                  {<div className="chat-bubble bg-green-200"> {data?.reply} </div>}
                 </div>
               </div>
             </>
@@ -114,7 +114,7 @@ const Main = () => {
           <div className="">
             <form onSubmit={handleSubmit} className="flex item-center">
               <input
-                className="w-full"
+                className="w-full p-2"
                 name="userComment"
                 type="text"
                 placeholder="Enter a prompt here"
