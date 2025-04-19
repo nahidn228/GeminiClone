@@ -111,20 +111,18 @@ const Main = () => {
         {/* Main bottom */}
 
         <div className="main-bottom">
-          <div className="search-box">
-            <form onSubmit={handleSubmit}>
+          <div className="">
+            <form onSubmit={handleSubmit} className="flex item-center">
               <input
                 className="w-full"
                 name="userComment"
                 type="text"
                 placeholder="Enter a prompt here"
               />
+              <button type="button" className=" btn p-4">
+                <img className="w-12" src={assets?.send_icon} alt="" />
+              </button>
             </form>
-            <div>
-              <img src={assets?.gallery_icon} alt="" />
-              <img src={assets?.mic_icon} alt="" />
-              <img src={assets?.send_icon} alt="" />
-            </div>
           </div>
 
           <p className="bottom-info">
