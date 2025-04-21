@@ -112,15 +112,15 @@ const Main = () => {
 
         <div className="main-bottom">
           <div className="">
-            <form onSubmit={handleSubmit} className="flex item-center">
+            <form onSubmit={handleSubmit} className="flex item-center justify-between gap-4">
               <input
                 className="w-full p-2"
                 name="userComment"
                 type="text"
                 placeholder="Enter a prompt here"
               />
-              <button type="button" className=" btn p-4">
-                <img className="w-12" src={assets?.send_icon} alt="" />
+              <button type="button" className=" btn btn-ghost p-4 py-2">
+                <img className="w-10" src={assets?.send_icon} alt="" />
               </button>
             </form>
           </div>
