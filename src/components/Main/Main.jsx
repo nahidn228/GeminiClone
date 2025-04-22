@@ -42,7 +42,7 @@ const Main = () => {
     <div className="main">
       {/* NavBar */}
       <div className="nav">
-        <p>Nime</p>
+        <p className="title">Nime</p>
         <img src={assets?.user_icon} alt="" />
       </div>
 
@@ -88,7 +88,12 @@ const Main = () => {
                   </div>
                 </div>
                 <div className="chat-header font-bold text-sm">User</div>
-                {<div className="chat-bubble bg-blue-300 "> {data?.prompt} </div>}
+                {
+                  <div className="chat-bubble bg-blue-300 ">
+                    {" "}
+                    {data?.prompt}{" "}
+                  </div>
+                }
               </div>
               <div className="">
                 <div className="chat chat-end">
@@ -101,7 +106,12 @@ const Main = () => {
                     </div>
                   </div>
                   <div className="chat-header font-bold text-sm">Nime</div>
-                  {<div className="chat-bubble bg-green-200"> {data?.reply} </div>}
+                  {
+                    <div className="chat-bubble bg-green-200">
+                      {" "}
+                      {data?.reply}{" "}
+                    </div>
+                  }
                 </div>
               </div>
             </>
@@ -112,7 +122,10 @@ const Main = () => {
 
         <div className="main-bottom">
           <div className="">
-            <form onSubmit={handleSubmit} className="flex item-center justify-between gap-4">
+            <form
+              onSubmit={handleSubmit}
+              className="flex item-center justify-between gap-4"
+            >
               <input
                 className="w-full p-2"
                 name="userComment"
