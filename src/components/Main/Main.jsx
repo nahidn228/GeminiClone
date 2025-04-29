@@ -56,6 +56,7 @@ const Main = () => {
         </div>
 
         {/* All cards */}
+        
         <div className="cards">
           <div className="card">
             <p>Recommend a scenic destination for my next road trip.</p>
@@ -75,7 +76,7 @@ const Main = () => {
           </div>
         </div>
 
-        <div className="min-h-80 overflow-scroll">
+        <div className="min-h-80 overflow-y-scroll">
           {allData.map((data) => (
             <>
               <div className="chat chat-start">
